@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.local
+.env
+server/db.json
+cookies.txt
+.DS_Store
+
+# Corrigé en clair : JAMAIS commité. Seul corrige.7z (chiffré) est suivi.
+/solution/

@@ -1,0 +1,23 @@
+{
+  "name": "auth-tp-starter",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TP Authentification React + Node/TS - squelette à compléter (voir ../GUIDE.md)",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -c green,cyan -n server,client \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
