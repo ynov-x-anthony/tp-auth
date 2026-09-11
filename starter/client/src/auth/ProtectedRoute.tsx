@@ -15,20 +15,12 @@ import { useAuth } from './AuthContext';
 
 export function ProtectedRoute() {
   const { status } = useAuth();
-
-  // ┌──────────────────────────────── TODO 2 ────────────────────────────────┐
-  // │ Gère les 3 valeurs possibles de `status` :                             │
-  // │                                                                       │
-  // │   • 'loading'       → on ne sait pas encore (le /auth/me est en cours).│
-  // │                       return <p className="p-8 text-center">Chargement…</p>;
-  // │                                                                       │
-  // │   • 'anonymous'     → pas connecté → renvoyer vers la page de login :  │
-  // │                       return <Navigate to="/login" replace />;         │
-  // │                                                                       │
-  // │   • 'authenticated' → OK → afficher la route enfant :                  │
-  // │                       return <Outlet />;                               │
-  // └───────────────────────────────────────────────────────────────────────┘
-
   console.log('[ProtectedRoute] status =', status); // repère utile - à retirer une fois corrigé
-  return <Outlet />;
+  if (status ==  'loading'){
+    return <p className="p-8 text-center">Chargement…</p>;
+  } else if (status == 'anonymous' ){
+     return <Navigate to="/login" replace />
+  } else if (status == 'authenticated'){
+    return <Outlet />
+  }
 }
