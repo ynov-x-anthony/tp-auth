@@ -33,7 +33,17 @@ export function LoginPage() {
     // │    }                                                                   │
     // └───────────────────────────────────────────────────────────────────────┘
 
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      await login(email, password);
+      navigate('/profile');
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Erreur');
+    } finally {
+      setSubmitting(false); 
+    }
   }
 
   return (
