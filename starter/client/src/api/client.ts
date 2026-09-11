@@ -31,6 +31,8 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
     // │ cookie httpOnly posé par le serveur au login.                  │
     // └───────────────────────────────────────────────────────────────┘
 
+    credentials: 'include',
+
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
