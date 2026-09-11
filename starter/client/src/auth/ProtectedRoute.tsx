@@ -1,5 +1,5 @@
 /**
- * ProtectedRoute : une "garde" de route.
+ * ProtectedRoute : une "garde" de route.s
  *
  * Utilisée comme route parente dans router.tsx (React Router v7, data mode) :
  *   { element: <ProtectedRoute />, children: [{ path: '/profile', element: <ProfilePage /> }] }
@@ -15,7 +15,14 @@ import { useAuth } from './AuthContext';
 
 export function ProtectedRoute() {
   const { status } = useAuth();
-
+  if (status == 'loading'){
+    return <p className="p-8 text-center">Chargement…</p>
+  } if (status == 'anonymous') { 
+    return <Navigate to="/login" replace />;
+  } if (status == 'authenticated'){
+    return <Outlet />;
+  }
+  
   // ┌──────────────────────────────── TODO 2 ────────────────────────────────┐
   // │ Gère les 3 valeurs possibles de `status` :                             │
   // │                                                                       │
@@ -28,6 +35,8 @@ export function ProtectedRoute() {
   // │   • 'authenticated' → OK → afficher la route enfant :                  │
   // │                       return <Outlet />;                               │
   // └───────────────────────────────────────────────────────────────────────┘
+
+
 
   console.log('[ProtectedRoute] status =', status); // repère utile - à retirer une fois corrigé
   return <Outlet />;
