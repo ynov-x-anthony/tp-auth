@@ -5,6 +5,14 @@ lang: fr
 
 # 🔐 TP - Authentification (React + Node/TypeScript)
 
+> **Rendu - Hugo BERTON** (branche `hugo_BERTON`) : les 3 TODO du `starter/` sont faits.
+>
+> ```bash
+> cd starter
+> npm install
+> npm run dev   # API : http://localhost:3001 - front : http://localhost:5173
+> ```
+
 Ce dépôt contient **le code** du TP : un mini système d'authentification complet
 (React + API Node), avec un `starter/` à compléter. Le corrigé est fourni **chiffré**
 (`corrige.7z`) ; la passphrase est communiquée **après la remise**.

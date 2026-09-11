@@ -1,7 +1,8 @@
 /**
  * Page de connexion : formulaire contrôlé (useState) → appelle `login()` du contexte.
  *
- * Le formulaire (JSX) est déjà écrit. Il te reste à remplir `handleSubmit` (TODO 3).
+ * handleSubmit (TODO 3) : login() → /profile si ça passe, sinon on affiche le message
+ * renvoyé par l'API (ApiError). Le finally réactive le bouton dans tous les cas.
  */
 
 import { useState, type FormEvent } from 'react';
@@ -20,20 +21,17 @@ export function LoginPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
 
-    // ┌──────────────────────────────── TODO 3 ────────────────────────────────┐
-    // │ 1. setError(null); setSubmitting(true);                                │
-    // │ 2. try {                                                               │
-    // │      await login(email, password);   // AuthContext fait le POST       │
-    // │      navigate('/profile');           // succès → page protégée         │
-    // │    } catch (err) {                                                     │
-    // │      setError(err instanceof ApiError ? err.message : 'Erreur');       │
-    // │    } finally {                                                         │
-    // │      setSubmitting(false);                                             │
-    // │    }                                                                   │
-    // └───────────────────────────────────────────────────────────────────────┘
-
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    try {
+      await login(email, password);
+      navigate('/profile');
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Erreur');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
