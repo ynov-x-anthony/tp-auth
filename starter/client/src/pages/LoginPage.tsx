@@ -20,6 +20,15 @@ export function LoginPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError(null);
+    try{
+      await login(email, password);
+      navigate('/profile');
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Erreur'); 
+    } finally {
+      setSubmitting(false);   
+    }
 
     // ┌──────────────────────────────── TODO 3 ────────────────────────────────┐
     // │ 1. setError(null); setSubmitting(true);                                │
