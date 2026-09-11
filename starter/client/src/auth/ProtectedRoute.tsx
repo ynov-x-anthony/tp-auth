@@ -16,7 +16,15 @@ import { useAuth } from './AuthContext';
 export function ProtectedRoute() {
   const { status } = useAuth();
 
-  // ┌──────────────────────────────── TODO 2 ────────────────────────────────┐
+  if (status === 'loading') {
+    return <p className="p-8 text-center">Chargement…</p>;
+  }
+
+  if (status === 'anonymous') {
+    return <Navigate to="/login" replace />;
+  }
+
+  // ┌────────────────────────────── TODO 2 ────────────────────────────────┐
   // │ Gère les 3 valeurs possibles de `status` :                             │
   // │                                                                       │
   // │   • 'loading'       → on ne sait pas encore (le /auth/me est en cours).│
