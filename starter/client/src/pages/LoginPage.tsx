@@ -5,35 +5,36 @@
  */
 
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import { ApiError } from '../api/client';
 
 export function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [email, setEmail] = useState('alice@ynov.com');
   const [password, setPassword] = useState('password123');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname || '/profile';
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    // ┌──────────────────────────────── TODO 3 ────────────────────────────────┐
-    // │ 1. setError(null); setSubmitting(true);                                │
-    // │ 2. try {                                                               │
-    // │      await login(email, password);   // AuthContext fait le POST       │
-    // │      navigate('/profile');           // succès → page protégée         │
-    // │    } catch (err) {                                                     │
-    // │      setError(err instanceof ApiError ? err.message : 'Erreur');       │
-    // │    } finally {                                                         │
-    // │      setSubmitting(false);                                             │
-    // │    }                                                                   │
-    // └───────────────────────────────────────────────────────────────────────┘
+    setError(null);
+    setSubmitting(true);
 
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    try {
+      await login(email, password);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Erreur de connexion');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
