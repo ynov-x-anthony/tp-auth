@@ -86,9 +86,12 @@ Puis : `cd solution && npm install && npm run dev`.
 ## Démarrer
 
 ```bash
-# Le TP à faire :
-cd starter && npm install && npm run dev
+cd starter
+npm install
+npm run dev
 ```
+
+`npm run dev` lance en même temps l'API (`server/`) et le front Vite (`client/`).
 
 - API : http://localhost:3001
 - Front : http://localhost:5173
