@@ -29,6 +29,13 @@ export function ProtectedRoute() {
   // │                       return <Outlet />;                               │
   // └───────────────────────────────────────────────────────────────────────┘
 
-  console.log('[ProtectedRoute] status =', status); // repère utile - à retirer une fois corrigé
+  if (status === 'loading') {
+    return <p className="p-8 text-center">Chargement…</p>;
+  }
+
+  if (status === 'anonymous') {
+    return <Navigate to="/login" replace />;
+  }
+
   return <Outlet />;
 }
