@@ -22,9 +22,10 @@ export function Navbar() {
       <Link to="/" className="text-sm text-slate-600 hover:text-slate-900">
         Accueil
       </Link>
+      {status !== 'anonymous' &&
       <Link to="/profile" className="text-sm text-slate-600 hover:text-slate-900">
         Profil
-      </Link>
+      </Link>}
 
       <div className="ml-auto flex items-center gap-3 text-sm">
         {status === 'authenticated' && user ? (
