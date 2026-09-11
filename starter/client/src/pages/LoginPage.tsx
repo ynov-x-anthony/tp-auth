@@ -33,7 +33,24 @@ export function LoginPage() {
     // │    }                                                                   │
     // └───────────────────────────────────────────────────────────────────────┘
 
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    // Réinitialisation des erreurs et activation de l'état de chargement
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      // Tentative de connexion via l'API
+      await login(email, password);
+      
+      // Si la connexion réussit, on redirige vers le profil
+      navigate('/profile');
+    } catch (err) {
+      // Si ça échoue (ex: mauvais mot de passe = 401), on attrape l'erreur
+      setError(err instanceof ApiError ? err.message : 'Erreur');
+    } finally {
+      // Dans tous les cas (succès ou échec), on désactive l'état de chargement
+      // pour que le bouton redevienne cliquable
+      setSubmitting(false);
+    }
   }
 
   return (
