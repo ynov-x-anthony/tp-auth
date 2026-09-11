@@ -20,6 +20,16 @@ export function LoginPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError(null); setSubmitting(true);
+
+    try {                                                               
+        await login(email, password);   // AuthContext fait le POST       
+        navigate('/profile');           // succès → page protégée         
+    } catch (err) {                                                     
+        setError(err instanceof ApiError ? err.message : 'Erreur');       
+    } finally {                                                         
+       setSubmitting(false);
+    }
 
     // ┌──────────────────────────────── TODO 3 ────────────────────────────────┐
     // │ 1. setError(null); setSubmitting(true);                                │
@@ -31,9 +41,7 @@ export function LoginPage() {
     // │    } finally {                                                         │
     // │      setSubmitting(false);                                             │
     // │    }                                                                   │
-    // └───────────────────────────────────────────────────────────────────────┘
-
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    // └───────────────────────────────────────────────────────────────────────┘  
   }
 
   return (
