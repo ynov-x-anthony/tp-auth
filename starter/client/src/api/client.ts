@@ -23,7 +23,7 @@ export class ApiError extends Error {
 export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
   const res = await fetch(API_URL + path, {
     ...options,
-
+    credentials: 'include',
     // ┌──────────────────────────── TODO 1 ────────────────────────────┐
     // │ Ajoute ici la ligne :                                          │
     // │     credentials: 'include',                                    │
