@@ -30,6 +30,7 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
     // │ C'est CE qui autorise le navigateur à envoyer / recevoir le    │
     // │ cookie httpOnly posé par le serveur au login.                  │
     // └───────────────────────────────────────────────────────────────┘
+    credentials: 'include',
 
     headers: {
       'Content-Type': 'application/json',
