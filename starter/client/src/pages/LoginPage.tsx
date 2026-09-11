@@ -32,6 +32,7 @@ export function LoginPage() {
     // │      setSubmitting(false);                                             │
     // │    }                                                                   │
     // └───────────────────────────────────────────────────────────────────────┘
+
     setError(null);
     setSubmitting(true);
 
@@ -40,11 +41,9 @@ export function LoginPage() {
       navigate('/profile');
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Erreur');
-    }
-    finally {
+    } finally {
       setSubmitting(false);
     }
-  
   }
 
   return (
