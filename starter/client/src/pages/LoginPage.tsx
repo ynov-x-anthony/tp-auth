@@ -18,22 +18,19 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
 
-    // ┌──────────────────────────────── TODO 3 ────────────────────────────────┐
-    // │ 1. setError(null); setSubmitting(true);                                │
-    // │ 2. try {                                                               │
-    // │      await login(email, password);   // AuthContext fait le POST       │
-    // │      navigate('/profile');           // succès → page protégée         │
-    // │    } catch (err) {                                                     │
-    // │      setError(err instanceof ApiError ? err.message : 'Erreur');       │
-    // │    } finally {                                                         │
-    // │      setSubmitting(false);                                             │
-    // │    }                                                                   │
-    // └───────────────────────────────────────────────────────────────────────┘
-
-    setError('TODO 3 : handleSubmit n’est pas encore implémenté.');
+    try {
+      await login(email, password);
+      navigate('/profile');
+    } catch (err: any) {
+      setError(err.message || 'Identifiants incorrects');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
