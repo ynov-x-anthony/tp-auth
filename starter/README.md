@@ -36,3 +36,15 @@ Cherche les blocs `TODO 1` / `TODO 2` / `TODO 3` dans le code.
 `App.tsx` (layout : Navbar + `<Outlet />`), `main.tsx` (`<RouterProvider>`).
 
 En cas de blocage : le corrigé est dans `../solution/`.
+
+
+
+
+## État du TP (complété)
+
+Les 3 TODOs ont été implémentés :
+- TODO 1 : `credentials: 'include'` ajouté dans `client.ts`
+- TODO 2 : gestion des 3 états dans `ProtectedRoute.tsx`
+- TODO 3 : `handleSubmit` implémenté dans `LoginPage.tsx`
+
+Testé : connexion, F5 (session conservée), déconnexion, cookie HttpOnly invisible en JS.
