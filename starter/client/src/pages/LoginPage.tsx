@@ -1,9 +1,3 @@
-/**
- * Page de connexion : formulaire contrôlé (useState) → appelle `login()` du contexte.
- *
- * Le formulaire (JSX) est déjà écrit. Il te reste à remplir `handleSubmit` (TODO 3).
- */
-
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
