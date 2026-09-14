@@ -24,13 +24,7 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
   const res = await fetch(API_URL + path, {
     ...options,
     credentials: 'include',
-    // ┌──────────────────────────── TODO 1 ────────────────────────────┐
-    // │ Ajoute ici la ligne :                                          │
-    // │     credentials: 'include',                                    │
-    // │ C'est CE qui autorise le navigateur à envoyer / recevoir le    │
-    // │ cookie httpOnly posé par le serveur au login.                  │
-    // └───────────────────────────────────────────────────────────────┘
-
+    
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
